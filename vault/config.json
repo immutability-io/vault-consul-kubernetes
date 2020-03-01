@@ -3,8 +3,9 @@
     "tcp":{
       "address": "127.0.0.1:8200",
       "tls_disable": 0,
-      "tls_cert_file": "/etc/tls/vault.pem",
-      "tls_key_file": "/etc/tls/vault-key.pem"
+      "tls_cert_file": "/etc/tls/vault.crt",
+      "tls_client_ca_file": "/etc/tls/root.crt",
+      "tls_key_file": "/etc/tls/vault.key"
     }
   },
   "storage": {
