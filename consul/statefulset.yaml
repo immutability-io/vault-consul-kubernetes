@@ -2,17 +2,22 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: consul
+  namespace: consul
 spec:
   serviceName: consul
   replicas: 3
   selector:
     matchLabels:
       app: consul
+  updateStrategy:
+    type: RollingUpdate   
   template:
     metadata:
       labels:
         app: consul
     spec:
+      terminationGracePeriodSeconds: 10
+      serviceAccountName: consul      
       securityContext:
         fsGroup: 1000
       containers:
@@ -34,6 +39,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
           args:
+            - "consul"
             - "agent"
             - "-advertise=$(POD_IP)"
             - "-bind=0.0.0.0"
