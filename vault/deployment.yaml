@@ -30,7 +30,8 @@ spec:
           - name: vault
             mountPath: /etc/tls
       - name: consul-vault-agent
-        image: "consul:1.4.0"
+        image: "consul:1.7.1"
+        imagePullPolicy: IfNotPresent
         env:
           - name: GOSSIP_ENCRYPTION_KEY
             valueFrom:
